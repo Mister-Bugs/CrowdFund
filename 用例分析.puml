@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+'actor System as "系统管理员"
+actor Sponsor as "众筹发起者"
+actor User as "用户"
+
+
+rectangle "众筹管理模块" {
+    Sponsor --> (发起众筹)
+    (发起众筹) ..> (设置众筹目标金额)
+    (发起众筹) ..> (设置众筹起始时间)
+
+    Sponsor --> (取消众筹)
+    Sponsor --> (领取众筹金额)
+
+}
+
+rectangle "众筹参与模块" {
+    User --> (参与众筹)
+    Sponsor --> (参与众筹)
+    (参与众筹) ..> (添加支持金额)
+    User --> (取消参与众筹)
+    Sponsor --> (取消参与众筹)
+    (取消参与众筹) ..> (一次性取回全部资金)
+    Sponsor --> (退款)
+    User --> (退款)
+    (退款) ..> (活动结束未满目标金额，退款)
+
+}
+
+
+@enduml
